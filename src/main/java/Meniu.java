@@ -1,10 +1,5 @@
 public class Meniu {
+    public static void main(String[] args) {
 
-    ServerApp serverApp;
-    ClientApp clientApp;
-    public Meniu(ServerApp serverApp) {
-        this.serverApp = serverApp;
     }
-
-
 }

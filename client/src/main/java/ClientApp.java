@@ -1,4 +1,5 @@
-import Tcp.TcpClient;
+import tcpC.Console;
+import tcpC.TcpClient;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -10,9 +11,12 @@ public class ClientApp {
 
         TcpClient tcpClient = new TcpClient(executorService);
 
-        tcpClient.sumElementsList();
-        tcpClient.productElementsList();
+        Console console = new Console(executorService,tcpClient);
+        console.start();
 
         executorService.shutdownNow();
     }
+
 }
+
+

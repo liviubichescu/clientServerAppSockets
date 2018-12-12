@@ -1,8 +1,10 @@
-package Tcp;
+package tcpS;
 
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -49,6 +51,12 @@ public class TcpServer {
                 else if (name.equals("productElementsList")){
                     productOfListIntegers(is,os,br);
                 }
+                else if (name.equals("divisibleNumbersInNumberRange")){
+                    returnNumbersInTheIntervalDivisibleByD(is,os,br);
+                }
+                else if (name.equals("last2digitsDivisibility")){
+                    returnNumbersInTheIntervalDivisibleByD(is,os,br);
+                }
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -93,5 +101,46 @@ public class TcpServer {
             os.write(response.getBytes());
         }
 
+        private void  returnNumbersInTheIntervalDivisibleByD(InputStream is, OutputStream os, BufferedReader br ) throws IOException {
+            String args = br.readLine();
+            String[] arr = args.split(", ");
+
+            int firstNr = Integer.parseInt(arr[0]);
+            int secondNr = Integer.parseInt(arr[1]);
+            int thirdNr = Integer.parseInt(arr[2]);
+            List<Integer> respList = new ArrayList<>();
+            for (int i=firstNr; i<=secondNr; i++) {
+                if (i%thirdNr==0){
+                    respList.add(i);
+                }
+            }
+
+            String response = respList + "\n";
+            System.out.println("server => CALCULATED RESPONSE: "+response);
+            os.write(response.getBytes());
+        }
+
+        private void  lastTwoNumbersDivisibility(InputStream is, OutputStream os, BufferedReader br ) throws IOException {
+            String args = br.readLine();
+            String[] arr = args.split(", ");
+
+            int firstNr = Integer.parseInt(arr[0]);
+            int secondNr = Integer.parseInt(arr[1]);
+            String third = arr[2].substring(arr[2].length()-2);
+            int thirdNr = Integer.parseInt(third);
+            List<Integer> respList = new ArrayList<>();
+            for (int i=firstNr; i<=secondNr; i++) {
+                if (i%thirdNr==0){
+                    respList.add(i);
+                }
+            }
+
+            String response = respList + "\n";
+            System.out.println("server => CALCULATED RESPONSE: "+response);
+            os.write(response.getBytes());
+        }
+
+
     }
+
 }

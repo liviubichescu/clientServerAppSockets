@@ -1,4 +1,4 @@
-import Tcp.TcpServer;
+import tcpS.TcpServer;
 
 public class ServerApp {
 
